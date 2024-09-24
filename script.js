@@ -46,14 +46,23 @@ function calculator(event) {
 
 
     }
-    if (event.target.innerText === ('+')) {
+    if (event.target.innerText === ('+')) { 
         currentOperator = "+"
         screen.innerText = "+"
 
     }
     if (event.target.innerText === ('-')) {
+        if(!num1){
+            num1 += "-"
+        }
+        else if (currentOperator && !num2){
+            num2 += "-"
+        }
+        else{
         currentOperator = "-"
         screen.innerText = "-"
+        }
+
     }
 
     if (event.target.innerText === ('*')) {
@@ -85,6 +94,9 @@ function calculator(event) {
             result = parseInt(num1) / parseInt(num2)
 
             screen.innerText = result
+        }
+        if (!num1 || !num2){
+            screen.innerText = "Enter a number"
         }
         num1 = result
         num2 = ""
